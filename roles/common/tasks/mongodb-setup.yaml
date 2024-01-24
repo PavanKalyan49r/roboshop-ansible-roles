@@ -8,20 +8,26 @@
     name: mongodb-org-shell
     state: present
 
-- name: get the entries count
-  ansible.builtin.command:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("catalogue") ; db.products.count()'
-  register: entires_count
+- name: get the  catalogue entries count
+  ansible.builtin.shell:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("catalogue") ; db.products.count()'
+  register: products_count
   when: component == "catalogue"
 
-- name: get the entries count
-  ansible.builtin.command:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("users") ; db.users.count()'
-  register: entires_count
+- name: get the user entries count
+  ansible.builtin.shell:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("users") ; db.users.count()'
+  register: users_count
   when: component == "user"
 
 # - name: print the count
 #   ansible.builtin.debug:
-#     msg: "product count: {{product_count}}"
+#     msg: "entries count: {{entries_count}}"
 
-- name: "load {{component}} data"
-  ansible.builtin.command: "mongo --host mongodb.pavanaws.online < /app/schema/{{component}}.js"
-  when: entries_count.stdout == "0" #keep in double qoute
+- name: "load catalogue data"
+  ansible.builtin.shell: "mongo --host mongodb.pavanaws.online < /app/schema/{{component}}.js"
+  when: products_count.stdout == "0" and component == "catalogue" #keep in double qoute
+  ignore_errors: true
+
+- name: "load user data"
+  ansible.builtin.shell: "mongo --host mongodb.pavanaws.online < /app/schema/{{component}}.js"
+  when: users_count.stdout == "0" and component == "user" #keep in double qoute
+  ignore_errors: true
