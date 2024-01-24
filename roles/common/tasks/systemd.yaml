@@ -7,7 +7,7 @@
   ansible.builtin.systemd_service:
     deamon_reload: true
 
-- name: "start ands enable {{component}}""
+- name: "start ands enable {{component}}"
   ansible.builtin.service:
     name: "{{component}}"
     state: restarted
