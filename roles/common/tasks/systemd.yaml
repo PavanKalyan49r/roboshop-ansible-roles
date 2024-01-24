@@ -5,7 +5,7 @@
 
 - name: deamon reload and start
   ansible.builtin.systemd_service:
-    damon_reload: true
+    deamon_reload: true
 
 - name: start ands enable catalogue
   ansible.builtin.service:
