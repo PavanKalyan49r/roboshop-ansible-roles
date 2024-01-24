@@ -14,9 +14,9 @@
   when: component == "catalogue"
 
 - name: get the entries count
-ansible.builtin.command:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("users") ; db.users.count()'
-register: entires_count
-when: component == "user"
+  ansible.builtin.command:  mongo --host mongodb.pavanaws.online --quiet --eval 'db = db.getSiblingDB("users") ; db.users.count()'
+  register: entires_count
+  when: component == "user"
 
 # - name: print the count
 #   ansible.builtin.debug:
