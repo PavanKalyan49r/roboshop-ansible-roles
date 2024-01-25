@@ -22,9 +22,3 @@
     src: /tmp/catalogue.zip
     dest: /app
     remote_src: yes
-
-- name: extract user application
-  ansible.builtin.unarchive:
-    src: /tmp/user.zip
-    dest: /app
-    remote_src: yes
