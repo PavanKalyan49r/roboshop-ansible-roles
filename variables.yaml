@@ -1,1 +1,2 @@
 MONGODB_HOST: mongodb.pavanaws.online
+REDIS_HOST: redis.pavanaws.online
