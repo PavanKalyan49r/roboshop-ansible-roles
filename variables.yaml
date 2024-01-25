@@ -1,3 +1,5 @@
 MONGODB_HOST: mongodb.pavanaws.online
 REDIS_HOST: redis.pavanaws.online
 CATALOGUE_HOST: catalogue.pavanaws.online
+USER_HOST: user.pavanaws.online
+CART_HOST: cart.pavanaws.online
