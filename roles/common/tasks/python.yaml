@@ -7,7 +7,7 @@
   - gcc
   - python3-devel
 
-  - name: install dependence
+- name: install dependence
   ansible.builtin.command: pip3.6 install -r requirements.txt
   args:
     chdir: /app
